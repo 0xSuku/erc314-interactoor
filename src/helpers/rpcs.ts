@@ -1,0 +1,1 @@
+export const rpc_degenChain = "https://rpc.degen.tips";
