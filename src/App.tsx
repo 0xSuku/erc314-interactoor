@@ -31,6 +31,8 @@ function App() {
 
   React.useEffect(() => {
     if (contractAddress.length === 42) {
+      setSwapTokenAmount_A(0n);
+      setSwapTokenAmount_B(0n);
     } else {
       setContractAddress("");
       setYourAddress("");
@@ -124,6 +126,11 @@ function App() {
     }
   }
 
+  function changeContract(value: string) {
+    setContractAddress(value); 
+    (document.getElementById('contract-address') as HTMLInputElement).value = value;
+  }
+
   return (
     <div className="App">
       <div className="header">
@@ -132,7 +139,13 @@ function App() {
         </button>
       </div>
       <div className="content">
-        Enter the contract address on Degen chain.
+        Use a preloaded address.
+        <select name="contracts" id="contracts" onChange={(e) => {changeContract(e.target.value)}}>
+          <option value="0xf702F3CA01d8C8b272eA6dF847E7Ec461AE395b5">MGM</option>
+          <option value="0xCC69F561aA07A6d002Fb3c0e2d284c67ACB8ba38">D314</option>
+          <option value="0x4Fc22a0E80ba32f88269E59E215604e2DF0d57FA">FUCK</option>
+        </select>
+        Or enter the contract address manually.
         <input
           id="contract-address"
           type="text"
